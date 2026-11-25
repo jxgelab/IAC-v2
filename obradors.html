@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Obradors compartits · Infraestructures alimentàries compartides · RuralCat</title>
-<meta name="description" content="Què són els obradors compartits, models, seguretat alimentària, experiències de referència, guies i ajuts del PEAC (línia 2.1).">
+<meta name="description" content="Què són els obradors compartits, models, experiències de referència, guia tècnica i ajuts del PEAC (línia 2.1).">
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="robots" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -85,13 +85,39 @@ p{margin:0 0 12px}
   @keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 }
 
-/* subnavegació de portada */
-.subnav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(255,255,255,.94);backdrop-filter:saturate(1.4) blur(8px);-webkit-backdrop-filter:saturate(1.4) blur(8px);border-bottom:1px solid var(--line);margin-top:24px}
-.subnav .in{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;padding-block:8px}
-.subnav .in::-webkit-scrollbar{display:none}
-.subnav button{flex:none;font-family:var(--f-ui);font-size:16px;font-weight:600;color:var(--ink-2);background:none;border:0;padding:8px 14px;cursor:pointer;border-radius:20px;white-space:nowrap}
-.subnav button:hover{background:var(--panel);color:var(--ink)}
-.subnav button[aria-current="true"]{background:var(--ink);color:#fff}
+/* menú de la portada: mosaic */
+.subnav{margin-top:32px}
+.subnav .wrap{container-type:inline-size}
+.bento{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.bx{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:4px;text-align:left;min-height:132px;padding:18px 18px 16px;background:var(--panel);border:0;border-bottom:6px solid var(--c,var(--red));cursor:pointer;color:var(--ink);font-family:var(--f-ui);overflow:hidden;transition:background .2s}
+.bx .ic{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:#fff;color:var(--ci,var(--red));margin-bottom:8px;transition:transform .25s}
+.bx .ic svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.bx .l{font-size:21px;font-weight:700;line-height:1.1}
+.bx .d{font-family:var(--f-text);font-size:13px;font-weight:400;line-height:1.4;color:var(--ink-2)}
+.bx:not(.feat)::after{content:"→";position:absolute;right:16px;top:16px;font-size:18px;color:var(--ci,var(--red));opacity:0;transform:translateX(-6px);transition:opacity .2s,transform .2s}
+.bx:hover{background:var(--panel-2)}
+.bx:hover .ic{transform:scale(1.08)}
+.bx:hover::after,.bx:focus-visible::after{opacity:1;transform:none}
+.bx:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+.b-obr{--c:var(--obr);--ci:var(--obr-ink)}.b-esc{--c:var(--esc);--ci:var(--esc-ink)}.b-xar{--c:var(--xar);--ci:var(--xar-ink)}
+.bx.feat{grid-column:1/-1;min-height:200px;padding:24px;background:var(--night);color:#fff;border-bottom-color:var(--red);isolation:isolate}
+.bx.feat::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,#16211F 0%,rgba(22,33,31,.92) 36%,rgba(22,33,31,0) 70%)}
+.bx.feat>span{position:relative;z-index:2}
+.bx.feat .ic{background:rgba(255,255,255,.1);color:#7FD3CC}
+.bx.feat .l{font-size:30px}
+.bx.feat .d{color:var(--night-mute);font-size:14px;max-width:26ch}
+.bx.feat .cta{margin-top:auto;font-family:var(--f-text);font-size:14px;font-weight:600;color:#fff;background:var(--red);padding:9px 14px;transition:background .2s}
+.bx.feat:hover{background:var(--night)}.bx.feat:hover .cta{background:var(--red-dk)}
+.bx.feat .bmap{position:absolute;z-index:0;right:-10%;top:50%;height:112%;width:auto;transform:translateY(-50%);pointer-events:none;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.bx.feat:hover .bmap{transform:translateY(-50%) scale(1.04)}
+@container (max-width:559px){.bx.feat .bmap{right:-34%;height:100%;opacity:.6}.bx.feat::before{background:linear-gradient(90deg,#16211F 0%,rgba(22,33,31,.88) 55%,rgba(22,33,31,.25) 100%)}}
+@container (min-width:560px){.bento{grid-template-columns:repeat(3,1fr)}}
+@container (min-width:780px){.bento{grid-template-columns:1.4fr repeat(3,1fr);grid-auto-rows:minmax(150px,auto)}
+ .bx.feat{grid-column:1;grid-row:1/span 2;min-height:0}
+ .bx.feat::before{background:linear-gradient(180deg,#16211F 0%,rgba(22,33,31,.9) 48%,rgba(22,33,31,0) 78%)}
+ .bx.feat .bmap{top:auto;bottom:-10%;right:-12%;height:auto;width:66%;transform:none}
+ .bx.feat:hover .bmap{transform:scale(1.04)}}
+@media (prefers-reduced-motion:reduce){.bx .ic,.bx.feat .bmap{transition:none}}
 
 /* ---------- xarxa (hero) ---------- */
 .net{background:var(--night);color:var(--night-ink);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:16px 32px;padding:44px 44px 28px;align-items:center;overflow:hidden;position:relative}
@@ -403,6 +429,12 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;
   .story .sfig img{transform:none}
 }
 
+/* enllaç al mapa des de les pàgines d'infraestructura */
+.maplink{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin:8px 0 0;padding:22px 24px;background:var(--night);color:#fff;text-decoration:none;border-bottom:6px solid var(--c,var(--red))}
+.maplink b{display:block;font-family:var(--f-ui);font-size:22px;margin-bottom:4px}
+.maplink span span{color:var(--night-mute);font-size:14px}
+.maplink .btn{flex:none}
+.maplink:hover{background:var(--night-2)}
 /* taula i dades obertes */
 .dataset{margin-top:20px;display:flex;flex-direction:column;gap:12px}
 .dataset details{background:var(--bg);border:1px solid var(--line)}
@@ -432,7 +464,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;
 .faq .ans{padding:0 48px 18px 4px;color:var(--ink-2);max-width:72ch}
 .faq .ans p{margin:0 0 10px}
 </style>
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Dataset", "name": "Infraestructures alimentàries compartides de Catalunya", "inLanguage": "ca", "description": "Obradors compartits i escorxadors identificats a Catalunya, amb municipi, comarca, activitat, estat i coordenades.", "creator": {"@type": "GovernmentOrganization", "name": "Departament d'Agricultura, Ramaderia, Pesca i Alimentació"}, "spatialCoverage": "Catalunya", "distribution": [{"@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": "infraestructures-compartides.csv"}, {"@type": "DataDownload", "encodingFormat": "application/geo+json", "contentUrl": "infraestructures-compartides.geojson"}]}]}</script>
+
 </head>
 <body>
 <div class="progress" aria-hidden="true"></div>
@@ -504,14 +536,6 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;
   </section>
 
   <section class="block">
-    <h2>Seguretat alimentària</h2>
-    <div class="cols">
-      <p class="prose" style="margin:0">Cada persona o empresa elaboradora és responsable de la seguretat alimentària dels seus productes. El reglament de règim intern de l'obrador ha de recollir els procediments d'higiene, traçabilitat i control, la seva periodicitat i les persones responsables de dur-los a terme.</p>
-      <div class="callout"><p><strong>Registre sanitari.</strong> Segons el cas, l'obrador pot disposar d'un únic número de registre per a tots els usuaris o d'un registre de la instal·lació i un per a cada elaborador. L'administració competent n'informarà en cada cas.</p></div>
-    </div>
-  </section>
-
-  <section class="block">
     <div class="exp-head">
       <div><p class="eyebrow" style="color:var(--obr-ink)">Experiències de referència</p><h2 style="margin:0">Obradors compartits que ja funcionen</h2></div>
       <div class="exp-nav"><button type="button" data-exp="-1" aria-label="Experiència anterior">←</button><button type="button" data-exp="1" aria-label="Experiència següent">→</button></div>
@@ -528,48 +552,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;
 
   <section class="block" id="s-ajuts"><p class="eyebrow" style="color:var(--cc)">Ajuts</p><h2>Ajuts per a obradors agroalimentaris compartits</h2><div class="ajut"><div><div class="big">2.936.211 €</div><p class="sm">d'ajut concedit en el marc del PEAC (línia 2.1)</p><div class="conv"><div>1a convocatòria<b>1.192.567,86 €</b>35 projectes</div><div>2a convocatòria<b>1.743.642,89 €</b>20 projectes</div></div></div><div><p style="margin:0 0 4px;font-weight:600">Actuacions subvencionables</p><p style="font-size:14px;color:var(--ink-2)">Creació o adequació d&#x27;espais, adquisició de maquinària i estudis de viabilitat i de dinamització.</p><p style="margin:14px 0 0;font-weight:600">Resultats de l'avaluació 2025-2026</p><ul><li>Els projectes avaluats han millorat obradors existents, que ja són operatius.</li><li>Tots declaren millores en higiene, qualitat o seguretat alimentària.</li><li>Una part ja ha incorporat nous elaboradors o ha desenvolupat nous productes.</li></ul><p class="sm" style="margin:12px 0 0">El Departament prepara unes noves bases reguladores. La propera convocatòria es publicarà en aquest espai.</p></div></div></section>
   </div>
-  <div id="s-mapa"><section class="map-band" id="mapband" aria-labelledby="mapa-t">
-  <div class="wrap">
-    <div class="map-head">
-      <div><p class="eyebrow">Mapa interactiu</p><h2 id="mapa-t" style="margin:0">Mapa de les infraestructures</h2></div>
-      <p class="small" style="margin:0;max-width:44ch" id="mapa-intro">Obradors compartits identificats a Catalunya. Activeu la capa de cobertura per veure les zones més allunyades d&#x27;un obrador.</p>
-    </div>
-    <div class="map-grid">
-      <div>
-        <div class="mapx" id="mapx">
-          <svg id="msvg" viewBox="0 0 900 901" role="application" aria-label="Mapa de Catalunya amb les infraestructures compartides. Feu servir els botons de zoom o la llista per navegar."></svg>
-          <div class="zoom"><button type="button" id="zin" aria-label="Apropa">+</button><button type="button" id="zout" aria-label="Allunya">−</button><button type="button" id="zreset" aria-label="Vista inicial" style="font-size:15px">⟲</button></div>
-          <div class="tip" id="tip" hidden></div>
-          <div class="hint" id="hint">Feu servir Ctrl + roda del ratolí per fer zoom</div>
-        </div>
-        <p class="small" style="margin:10px 0 0">Font: Registre d'indústries agràries i alimentàries (RIAAC), Registre sanitari (RSIPAC) i inventari d'obradors compartits del Departament. Mapa esquemàtic; les distàncies són aproximades i en línia recta. Visor oficial: <a href="https://sig.gencat.cat/visors/InfrComp.html" target="_blank" rel="noopener">Mapa d'infraestructures alimentàries compartides</a>.</p>
-      </div>
-      <div class="panel">
-        <div class="pcard">
-          <p class="t">Capes</p>
-          <label class="layer"><input type="checkbox" id="L-o" checked><span class="sw" style="border-radius:50%;background:var(--obr)"></span>Obradors compartits<em id="n-o"></em></label>
-          <label class="layer"><input type="checkbox" id="L-e" checked><span class="sw" style="border-radius:2px;background:var(--esc)"></span>Escorxadors<em id="n-e"></em></label>
-          <label class="layer"><input type="checkbox" id="L-c"><span class="sw" style="background:linear-gradient(90deg,var(--esc),var(--gap))"></span>Cobertura territorial</label>
-          <div class="cov" id="covbox" hidden>
-            <div class="seg" role="group" aria-label="Cobertura de"><button type="button" data-cov="e" aria-pressed="true">Escorxadors</button><button type="button" data-cov="o" aria-pressed="false">Obradors</button></div>
-            <label for="covr" style="font-size:13px;font-weight:600">Distància de referència</label>
-            <div class="range"><input type="range" id="covr" min="5" max="50" step="5" value="15"><output id="covo" for="covr">15 km</output></div>
-            <div class="ramp" aria-hidden="true"></div>
-            <div class="ramp-l"><span>0 km</span><span id="covlbl">15 km</span><span>més lluny</span></div>
-            <div class="covstat"><b id="covpct">–</b><span id="covtxt">del territori queda a més de 15 km</span></div>
-          </div>
-        </div>
-        <div class="pcard">
-          <label for="cerca" class="t" style="display:block">Cerca</label>
-          <input id="cerca" type="search" placeholder="Nom, municipi o comarca">
-          <p id="res" aria-live="polite" class="small" style="margin:8px 0 0"></p>
-          <ul class="list" id="llista"></ul>
-        </div>
-        <div id="fitxa"></div>
-      </div>
-    </div>
-  <div class="dataset"><details><summary>Llistat dels 27 obradors compartits en format taula</summary><div class="tblw"><table class="tbl"><caption>Infraestructures alimentàries compartides identificades a Catalunya, ordenades per comarca</caption><thead><tr><th scope="col">Nom</th><th scope="col">Tipus</th><th scope="col">Municipi</th><th scope="col">Comarca</th><th scope="col">Activitat o espècies</th><th scope="col">Estat</th></tr></thead><tbody><tr><td>La Brostada <a href="https://www.labrostada.cat/" target="_blank" rel="noopener">web ↗</a></td><td>Obrador</td><td>Bràfim</td><td>Alt Camp</td><td>Transformats vegetals</td><td>En funcionament</td></tr><tr><td>La Gatera <a href="https://lagateracoop.cat/" target="_blank" rel="noopener">web ↗</a></td><td>Obrador</td><td>Font-rubí</td><td>Alt Penedès</td><td>Transformats vegetals</td><td>En funcionament</td></tr><tr><td>Viver de Cellers del Penedès <a href="https://cellerviverpenedes.cat/" target="_blank" rel="noopener">web ↗</a></td><td>Obrador</td><td>Vilafranca del Penedès</td><td>Alt Penedès</td><td>Vins</td><td>En funcionament</td></tr><tr><td>Fundació Planes Corts <a href="https://fundacioplanescorts.org" target="_blank" rel="noopener">web ↗</a></td><td>Obrador</td><td>Estamariu</td><td>Alt Urgell</td><td>Productes làctics</td><td>En funcionament</td></tr><tr><td>Obrador del Parc Agrari de la Conca d&#x27;Òdena <a href="https://parcagrarico.cat/" target="_blank" rel="noopener">web ↗</a></td><td>Obrador</td><td>Jorba</td><td>Anoia</td><td>Transformats vegetals i productes làctics</td><td>En construcció</td></tr><tr><td>El Tall <a href="https://parcruraldelmontserrat.cat" target="_blank" rel="noopener">web ↗</a></td><td>Obrador</td><td>Marganell</td><td>Bages</td><td>Productes carnis, sala de desfer</td><td>En construcció</td></tr><tr><td>L&#x27;Obradora <a href="https://lobradora.cat/" target="_blank" rel="noopener">web ↗</a></td><td>Obrador</td><td>Manresa</td><td>Bages</td><td>Transformats vegetals i plats cuinats</td><td>En funcionament</td></tr><tr><td>Viver de Celleristes d&#x27;Artés <a href="https://cavesartium.com" target="_blank" rel="noopener">web ↗</a></td><td>Obrador</td><td>Artés</td><td>Bages</td><td>Vins</td><td>En funcionament</td></tr><tr><td>Associació L&#x27;Econau <a href="https://econau.org/ca/obrador" target="_blank" rel="noopener">web ↗</a></td><td>Obrador</td><td>l&#x27;Ametlla de Mar</td><td>Baix Ebre</td><td>Transformats vegetals</td><td>En funcionament</td></tr><tr><td>EbreTerra</td><td>Obrador</td><td>Deltebre</td><td>Baix Ebre</td><td>Transformats vegetals</td><td>En funcionament</td></tr><tr><td>Bloc4BCN <a href="https://bloc4.coop/contacte/#mapa" target="_blank" rel="noopener">web ↗</a></td><td>Obrador</td><td>Barcelona</td><td>Barcelonès</td><td>Transformats vegetals i plats cuinats</td><td>En construcció</td></tr><tr><td>BaseActiva <a href="https://concactiva.cat/baseactiva/" target="_blank" rel="noopener">web ↗</a></td><td>Obrador</td><td>Santa Coloma de Queralt</td><td>Conca de Barberà</td><td>Cerveses</td><td>En funcionament</td></tr><tr><td>Espai Cuina <a href="https://concactiva.cat/espai-cuina/" target="_blank" rel="noopener">web ↗</a></td><td>Obrador</td><td>Montblanc</td><td>Conca de Barberà</td><td>Transformats vegetals i plats cuinats</td><td>En funcionament</td></tr><tr><td>Viver de Celleristes de la Conca de Barberà <a href="https://concactiva.cat/viver-celleristes/" target="_blank" rel="noopener">web ↗</a></td><td>Obrador</td><td>Barberà de la Conca</td><td>Conca de Barberà</td><td>Vins i caves</td><td>En funcionament</td></tr><tr><td>La Branda Destil·leria <a href="https://labranda.cat/" target="_blank" rel="noopener">web ↗</a></td><td>Obrador</td><td>l&#x27;Albi</td><td>Garrigues</td><td>Licors</td><td>En funcionament</td></tr><tr><td>Obrador Garrigues Altes <a href="https://www.garriguesaltes.cat/espais-de-treball-compartit" target="_blank" rel="noopener">web ↗</a></td><td>Obrador</td><td>Bellaguarda</td><td>Garrigues</td><td>Transformats vegetals i plats cuinats</td><td>En funcionament</td></tr><tr><td>Tres Cadires <a href="https://trescadires.cat/activitats-i-projectes/obrador-compartit/" target="_blank" rel="noopener">web ↗</a></td><td>Obrador</td><td>Arbeca</td><td>Garrigues</td><td>Licors i transformats vegetals</td><td>En funcionament</td></tr><tr><td>Obrador agroalimentari del Turrós</td><td>Obrador</td><td>Argelaguer</td><td>Garrotxa</td><td>Molí fariner, transformats vegetals</td><td>En funcionament</td></tr><tr><td>El Quall <a href="https://www.llucanes.cat/programa/formatgeria-obrador-comunitari/" target="_blank" rel="noopener">web ↗</a></td><td>Obrador</td><td>Alpens</td><td>Lluçanès</td><td>Productes làctics</td><td>En funcionament</td></tr><tr><td>Tremolina de Muntanya <a href="https://tremolinacoop.cat" target="_blank" rel="noopener">web ↗</a></td><td>Obrador</td><td>Baix Pallars</td><td>Pallars Sobirà</td><td>Transformats vegetals</td><td>En construcció</td></tr><tr><td>Aula d&#x27;Hostaleria del Ripollès <a href="https://www.ripollesdesenvolupament.com/serveis/aula-hosteleria/" target="_blank" rel="noopener">web ↗</a></td><td>Obrador</td><td>Ripoll</td><td>Ripollès</td><td>Menjars preparats</td><td>En funcionament</td></tr><tr><td>Fundació Privada Ilersis <a href="https://ilersis.org" target="_blank" rel="noopener">web ↗</a></td><td>Obrador</td><td>Lleida</td><td>Segrià</td><td>Transformats vegetals</td><td>En funcionament</td></tr><tr><td>La Sobirana Cooperativa <a href="https://lasobirana.cat/obrador/" target="_blank" rel="noopener">web ↗</a></td><td>Obrador</td><td>Santa Coloma de Farners</td><td>Selva</td><td>Licors</td><td>En funcionament</td></tr><tr><td>Obrador compartit de la Selva i la Baixa Tordera <a href="https://www.espaiagraribaixatordera.cat/" target="_blank" rel="noopener">web ↗</a></td><td>Obrador</td><td>Blanes</td><td>Selva</td><td>Transformats vegetals</td><td>En construcció</td></tr><tr><td>Destil·leria dels Ports <a href="https://destilleriadelsports.cat" target="_blank" rel="noopener">web ↗</a></td><td>Obrador</td><td>Prat de Comte</td><td>Terra Alta</td><td>Licors</td><td>En funcionament</td></tr><tr><td>Obrador ecofariner de Gallecs <a href="http://www.espairuralgallecs.cat/" target="_blank" rel="noopener">web ↗</a></td><td>Obrador</td><td>Mollet del Vallès</td><td>Vallès Oriental</td><td>Farines</td><td>En funcionament</td></tr><tr><td>Viver d&#x27;Empreses Alimentàries Municipals de l&#x27;Ajuntament de Tagamanent (VEAMAT) <a href="https://www.tagamanent.cat/obrador/" target="_blank" rel="noopener">web ↗</a></td><td>Obrador</td><td>Tagamanent</td><td>Vallès Oriental</td><td>Transformats vegetals i plats cuinats</td><td>En funcionament</td></tr></tbody></table></div><p class="small">* Ubicació aproximada al municipi.</p></details><div class="dl"><span>Dades obertes:</span><a href="infraestructures-compartides.csv" download>Descarrega en CSV</a><a href="infraestructures-compartides.geojson" download>Descarrega en GeoJSON</a><span class="small">Totes les infraestructures, amb coordenades (ETRS89, graus decimals).</span></div></div></div>
-</section></div><div class="wrap"><section class="block" id="s-faq" aria-labelledby="faq-t"><p class="eyebrow">Preguntes freqüents</p><h2 id="faq-t">Dubtes habituals sobre els obradors compartits</h2><p class="prose" style="color:var(--ink-2)">Apartat en preparació: les respostes es publicaran properament.</p><ul class="faq-q"><li>Què és un obrador compartit?</li><li>Necessito un registre sanitari propi per elaborar en un obrador compartit?</li><li>Qui és responsable de la seguretat alimentària dels productes?</li><li>Quins ajuts hi ha per a obradors compartits?</li></ul></section></div>
+  <div class="wrap"><a class="maplink" style="--c:var(--obr)" href="index.html?mapa=obradors#s-mapa"><span><b>Mapa d'infraestructures compartides</b><span>Consulteu la ubicació dels obradors compartits al mapa interactiu de la pàgina principal.</span></span><span class="btn">Obre el mapa →</span></a></div><div class="wrap"><section class="block" id="s-faq" aria-labelledby="faq-t"><p class="eyebrow">Preguntes freqüents</p><h2 id="faq-t">Dubtes habituals sobre els obradors compartits</h2><p class="prose" style="color:var(--ink-2)">Apartat en preparació: les respostes es publicaran properament.</p><ul class="faq-q"><li>Què és un obrador compartit?</li><li>Necessito un registre sanitari propi per elaborar en un obrador compartit?</li><li>Qui és responsable de la seguretat alimentària dels productes?</li><li>Quins ajuts hi ha per a obradors compartits?</li></ul></section></div>
 </main>
 <div class="wrap"><section class="block"><h2>Altres infraestructures compartides</h2><div class="related"><a href="escorxadors.html" style="--c:var(--esc)">Escorxadors de baixa capacitat<small>Sacrifici de proximitat</small></a><a href="xarxes.html" style="--c:var(--xar)">Xarxes de distribució<small>Logística col·laborativa</small></a></div></section></div>
 <footer><div class="wrap"><span>[Logo Generalitat de Catalunya] · Departament d'Agricultura, Ramaderia, Pesca i Alimentació</span><span>Avís legal · Accessibilitat · Contacte</span></div></footer>
@@ -605,6 +588,12 @@ function countUp(b,n,dec,suf){if(RM)return;var t0=null;function f(t){if(!t0)t0=t
 var io=("IntersectionObserver" in window)?new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;io.unobserve(e.target);var b=e.target,n=parseFloat(b.getAttribute("data-cnt"));countUp(b,n,false,b.getAttribute("data-s")||"")})},{threshold:.6}):null;
 if(io)document.querySelectorAll("[data-cnt]").forEach(function(b){io.observe(b)});
 
+/* ======== minimapa del menú ======== */
+(function(){var s=document.querySelector(".bmap");if(!s)return;
+ sv("polygon",{points:window.OUTLINE,fill:"#1F2E2B",stroke:"#4C6560","stroke-width":"3","stroke-linejoin":"round"},s);
+ P.forEach(function(a,i){var p=XY[i];if(a[0]==="o")sv("circle",{cx:p[0],cy:p[1],r:10,fill:"#F28A3E"},s);else sv("rect",{x:p[0]-8,y:p[1]-8,width:16,height:16,fill:"#19B5AC"},s)});
+})();
+
 /* ======== xarxa animada ======== */
 (function(){
  var s=document.getElementById("netsvg");if(!s)return;
@@ -631,13 +620,6 @@ if(io)document.querySelectorAll("[data-cnt]").forEach(function(b){io.observe(b)}
   });
   document.querySelectorAll(".counts b").forEach(function(b){var raw=b.getAttribute("data-n");countUp(b,parseFloat(raw),raw.indexOf(".")>-1,b.getAttribute("data-s")||"")});
  }
-})();
-
-/* ======== subnavegació activa ======== */
-(function(){
- var bs=[].slice.call(document.querySelectorAll(".subnav button"));if(!("IntersectionObserver" in window))return;
- var ob=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){bs.forEach(function(b){b.setAttribute("aria-current",String(b.getAttribute("data-go")===e.target.id))})}})},{rootMargin:"-40% 0px -55% 0px"});
- bs.forEach(function(b){var t=document.getElementById(b.getAttribute("data-go"));if(t)ob.observe(t)});
 })();
 
 /* ======== recorregut ======== */
@@ -812,7 +794,6 @@ var MAP=(function(){
 /* ======== experiències: navegació ======== */
 document.querySelectorAll("[data-exp]").forEach(function(b){b.addEventListener("click",function(){var tr=b.closest("section").querySelector(".exp-track");tr.scrollBy({left:(+b.getAttribute("data-exp"))*(tr.firstElementChild.offsetWidth+12),behavior:RM?"auto":"smooth"})})});
 
-if(MAP)MAP.preset("obradors");
 })();
 </script>
 </body>
